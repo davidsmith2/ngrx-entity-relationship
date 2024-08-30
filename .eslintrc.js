@@ -348,8 +348,6 @@ module.exports = {
             "error",
             {
                 "rules": {
-                    "chai-prefer-contains-to-index-of": true,
-                    "chai-vague-errors": true,
                     "comment-type": [
                         true,
                         "singleline",
@@ -357,30 +355,11 @@ module.exports = {
                         "doc",
                         "directive"
                     ],
-                    "defocus": true,
                     "encoding": true,
-                    "informative-docs": true,
-                    "jquery-deferred-must-complete": true,
-                    "lines-between-class-members": true,
-                    "mocha-unneeded-done": true,
-                    "no-disable-auto-sanitization": true,
-                    "no-function-expression": true,
                     "no-inferred-empty-object-type": true,
-                    "no-inner-html": true,
-                    "no-jquery-raw-elements": true,
                     "no-mergeable-namespace": true,
-                    "no-single-line-block-comment": true,
-                    "no-string-based-set-immediate": true,
-                    "no-string-based-set-interval": true,
-                    "no-string-based-set-timeout": true,
                     "no-tautology-expression": true,
-                    "no-typeof-undefined": true,
                     "no-unnecessary-callback-wrapper": true,
-                    "no-unnecessary-field-initialization": true,
-                    "no-unnecessary-local-variable": true,
-                    "no-unnecessary-override": true,
-                    "no-unsupported-browser-code": true,
-                    "no-useless-files": true,
                     "nx-enforce-module-boundaries": [
                         true,
                         {
@@ -398,17 +377,6 @@ module.exports = {
                             "enforceBuildableLibDependency": true
                         }
                     ],
-                    "promise-must-complete": true,
-                    "react-a11y-accessible-headings": true,
-                    "react-a11y-input-elements": true,
-                    "react-a11y-meta": true,
-                    "react-a11y-no-onchange": true,
-                    "react-a11y-required": true,
-                    "react-a11y-titles": true,
-                    "react-anchor-blank-noopener": true,
-                    "react-iframe-missing-sandbox": true,
-                    "react-this-binding-issue": true,
-                    "react-unused-props-and-state": true,
                     "static-this": true,
                     "strict-type-predicates": true,
                     "typedef": [
@@ -419,8 +387,6 @@ module.exports = {
                         "member-variable-declaration"
                     ],
                     "unnecessary-else": true,
-                    "use-named-parameter": true,
-                    "use-simple-attributes": true,
                     "whitespace": [
                         true,
                         "check-branch",
