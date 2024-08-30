@@ -23,7 +23,11 @@ module.exports = {
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "project": "tsconfig.json",
+        "project": [
+            'libs/ngrx-entity-relationship/tsconfig.lib.json',
+            'libs/ngrx-entity-relationship/tsconfig.spec.json'
+        ],
+        "tsconfigRootDir": __dirname,
         "sourceType": "module"
     },
     "plugins": [
