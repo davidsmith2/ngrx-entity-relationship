@@ -1,0 +1,14 @@
+{
+  "extends": "../../tslint.json",
+  "linterOptions": {
+    "exclude": [
+      "!**/*"
+    ]
+  },
+  "rules": {
+    "no-any": false,
+    "no-unsafe-any": false,
+    "no-object-literal-type-assertion": false,
+    "class-name": false
+  }
+}
