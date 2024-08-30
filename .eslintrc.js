@@ -41,7 +41,8 @@ module.exports = {
         "eslint-plugin-no-null",
         "eslint-plugin-unicorn",
         "@typescript-eslint",
-        "@typescript-eslint/tslint"
+        "@typescript-eslint/tslint",
+        "@nrwl/eslint-plugin-nx"
     ],
     "rules": {
         "@typescript-eslint/adjacent-overload-signatures": "error",
@@ -360,23 +361,6 @@ module.exports = {
                     "no-mergeable-namespace": true,
                     "no-tautology-expression": true,
                     "no-unnecessary-callback-wrapper": true,
-                    "nx-enforce-module-boundaries": [
-                        true,
-                        {
-                            "allow": [
-                                "ngrx-entity-relationship"
-                            ],
-                            "depConstraints": [
-                                {
-                                    "onlyDependOnLibsWithTags": [
-                                        "*"
-                                    ],
-                                    "sourceTag": "*"
-                                }
-                            ],
-                            "enforceBuildableLibDependency": true
-                        }
-                    ],
                     "static-this": true,
                     "strict-type-predicates": true,
                     "typedef": [
@@ -399,6 +383,23 @@ module.exports = {
                         "check-preblock"
                     ]
                 }
+            }
+        ],
+        "@nrwl/nx/enforce-module-boundaries": [
+            "error",
+            {
+                "allow": [
+                    "ngrx-entity-relationship"
+                ],
+                "depConstraints": [
+                    {
+                        "onlyDependOnLibsWithTags": [
+                            "*"
+                        ],
+                        "sourceTag": "*"
+                    }
+                ],
+                "enforceBuildableLibDependency": true
             }
         ]
     }
