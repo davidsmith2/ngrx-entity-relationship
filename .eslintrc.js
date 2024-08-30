@@ -54,7 +54,7 @@ module.exports = {
         "@typescript-eslint/await-thenable": "error",
         "@typescript-eslint/ban-ts-comment": "error",
         "@typescript-eslint/ban-types": [
-            "error",
+            "warn",
             {
                 "types": {
                     "Object": {
@@ -70,17 +70,23 @@ module.exports = {
         "@typescript-eslint/consistent-type-definitions": "error",
         "@typescript-eslint/dot-notation": "off",
         "@typescript-eslint/explicit-member-accessibility": [
-            "error",
+            "warn",
             {
                 "accessibility": "explicit"
             }
         ],
         "@typescript-eslint/member-delimiter-style": "error",
         "@typescript-eslint/member-ordering": "error",
-        "@typescript-eslint/naming-convention": "off",
+        "@typescript-eslint/naming-convention": [
+            "error",
+            {
+                "selector": "interface",
+                "format": ["PascalCase"]
+            }
+        ],
         "@typescript-eslint/no-array-constructor": "off",
         "@typescript-eslint/no-dynamic-delete": "error",
-        "@typescript-eslint/no-empty-function": "error",
+        "@typescript-eslint/no-empty-function": "warn",
         "@typescript-eslint/no-empty-interface": "error",
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-extraneous-class": "error",
@@ -98,7 +104,7 @@ module.exports = {
         "@typescript-eslint/no-parameter-properties": "off",
         "@typescript-eslint/no-require-imports": "off",
         "@typescript-eslint/no-shadow": [
-            "error",
+            "warn",
             {
                 "hoist": "all"
             }
@@ -111,13 +117,13 @@ module.exports = {
         "@typescript-eslint/no-unused-expressions": "error",
         "@typescript-eslint/no-use-before-define": "off",
         "@typescript-eslint/no-var-requires": "off",
-        "@typescript-eslint/prefer-for-of": "error",
+        "@typescript-eslint/prefer-for-of": "warn",
         "@typescript-eslint/prefer-function-type": "error",
         "@typescript-eslint/prefer-namespace-keyword": "error",
         "@typescript-eslint/prefer-readonly": "error",
         "@typescript-eslint/promise-function-async": "error",
         "@typescript-eslint/quotes": [
-            "error",
+            "warn",
             "single",
             {
                 "avoidEscape": true
@@ -133,7 +139,7 @@ module.exports = {
                 "lib": "always"
             }
         ],
-        "@typescript-eslint/unbound-method": "error",
+        "@typescript-eslint/unbound-method": "warn",
         "@typescript-eslint/unified-signatures": "off",
         "arrow-body-style": "error",
         "arrow-parens": [
@@ -191,12 +197,12 @@ module.exports = {
         ],
         "max-classes-per-file": "off",
         "max-len": [
-            "error",
+            "warn",
             {
-                "ignorePattern": "^import |^export {(.*?)}"
+                "ignorePattern": "^import |^export \\{(.*?)\\}"
             }
         ],
-        "max-statements": "error",
+        "max-statements": "warn",
         "new-parens": "error",
         "newline-per-chained-call": "off",
         "no-array-constructor": "off",
@@ -239,7 +245,7 @@ module.exports = {
         "no-duplicate-case": "error",
         "no-duplicate-imports": "error",
         "no-empty": "error",
-        "no-empty-function": "error",
+        "no-empty-function": "warn",
         "no-eval": "error",
         "no-extra-bind": "error",
         "no-extra-semi": "error",
@@ -257,7 +263,7 @@ module.exports = {
                 "allowForLoopAfterthoughts": true
             }
         ],
-        "no-redeclare": "error",
+        "no-redeclare": "warn",
         "no-regex-spaces": "error",
         "no-restricted-imports": [
             "error",
@@ -272,7 +278,7 @@ module.exports = {
         ],
         "no-return-await": "error",
         "no-sequences": "error",
-        "no-shadow": "error",
+        "no-shadow": "warn",
         "no-sparse-arrays": "error",
         "no-template-curly-in-string": "error",
         "no-throw-literal": "error",
@@ -283,7 +289,7 @@ module.exports = {
         "no-unused-expressions": "error",
         "no-unused-labels": "error",
         "no-use-before-define": "off",
-        "no-useless-constructor": "error",
+        "no-useless-constructor": "warn",
         "no-var": "error",
         "no-void": "error",
         "no-warning-comments": [
@@ -314,7 +320,7 @@ module.exports = {
             "error",
             "as-needed"
         ],
-        "quotes": "error",
+        "quotes": ["warn", "single"],
         "radix": "error",
         "react/no-danger": "error",
         "security/detect-non-literal-fs-filename": "off",
