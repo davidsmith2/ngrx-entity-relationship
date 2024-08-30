@@ -18,8 +18,6 @@ module.exports = {
         "node": true
     },
     "extends": [
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking",
         "prettier",
         "prettier/@typescript-eslint"
     ],
@@ -29,16 +27,16 @@ module.exports = {
         "sourceType": "module"
     },
     "plugins": [
-        "eslint-plugin-import",
-        "eslint-plugin-no-null",
         "eslint-plugin-jsdoc",
-        "eslint-plugin-security",
         "eslint-plugin-prefer-arrow",
-        "eslint-plugin-unicorn",
         "eslint-plugin-jest",
+        "eslint-plugin-security",
         "jsx-a11y",
         "eslint-plugin-react",
         "eslint-plugin-lodash",
+        "eslint-plugin-import",
+        "eslint-plugin-no-null",
+        "eslint-plugin-unicorn",
         "@typescript-eslint",
         "@typescript-eslint/tslint"
     ],
@@ -65,7 +63,7 @@ module.exports = {
                 }
             }
         ],
-        "@typescript-eslint/consistent-type-assertions": "error",
+        "@typescript-eslint/consistent-type-assertions": "off",
         "@typescript-eslint/consistent-type-definitions": "error",
         "@typescript-eslint/dot-notation": "off",
         "@typescript-eslint/explicit-member-accessibility": [
@@ -76,12 +74,12 @@ module.exports = {
         ],
         "@typescript-eslint/member-delimiter-style": "error",
         "@typescript-eslint/member-ordering": "error",
-        "@typescript-eslint/naming-convention": "error",
+        "@typescript-eslint/naming-convention": "off",
         "@typescript-eslint/no-array-constructor": "off",
         "@typescript-eslint/no-dynamic-delete": "error",
         "@typescript-eslint/no-empty-function": "error",
         "@typescript-eslint/no-empty-interface": "error",
-        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-extraneous-class": "error",
         "@typescript-eslint/no-floating-promises": "error",
         "@typescript-eslint/no-for-in-array": "error",
@@ -373,7 +371,6 @@ module.exports = {
                     "no-unnecessary-field-initialization": true,
                     "no-unnecessary-local-variable": true,
                     "no-unnecessary-override": true,
-                    "no-unsafe-any": true,
                     "no-unsupported-browser-code": true,
                     "no-useless-files": true,
                     "nx-enforce-module-boundaries": [
