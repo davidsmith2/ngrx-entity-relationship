@@ -18,8 +18,7 @@ module.exports = {
         "node": true
     },
     "extends": [
-        "prettier",
-        "prettier/@typescript-eslint"
+        "prettier"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -120,7 +119,6 @@ module.exports = {
         "@typescript-eslint/quotes": [
             "error",
             "single",
-            "double",
             {
                 "avoidEscape": true
             }
