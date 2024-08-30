@@ -140,6 +140,14 @@ module.exports = {
                 "lib": "always"
             }
         ],
+        "@typescript-eslint/typedef": [
+            "error",
+            {
+                "memberVariableDeclaration": true,
+                "parameter": true,
+                "propertyDeclaration": true,
+            }
+        ],
         "@typescript-eslint/unbound-method": "warn",
         "@typescript-eslint/unified-signatures": "off",
         "arrow-body-style": "error",
@@ -355,14 +363,6 @@ module.exports = {
                         "multiline",
                         "doc",
                         "directive"
-                    ],
-                    "encoding": true,
-                    "typedef": [
-                        true,
-                        "call-signature",
-                        "parameter",
-                        "property-declaration",
-                        "member-variable-declaration"
                     ],
                     "unnecessary-else": true,
                     "whitespace": [
