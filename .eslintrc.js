@@ -357,12 +357,6 @@ module.exports = {
                         "directive"
                     ],
                     "encoding": true,
-                    "no-inferred-empty-object-type": true,
-                    "no-mergeable-namespace": true,
-                    "no-tautology-expression": true,
-                    "no-unnecessary-callback-wrapper": true,
-                    "static-this": true,
-                    "strict-type-predicates": true,
                     "typedef": [
                         true,
                         "call-signature",
