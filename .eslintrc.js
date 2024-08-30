@@ -41,7 +41,6 @@ module.exports = {
         "eslint-plugin-no-null",
         "eslint-plugin-unicorn",
         "@typescript-eslint",
-        "@typescript-eslint/tslint",
         "@nrwl/eslint-plugin-nx"
     ],
     "rules": {
@@ -253,6 +252,7 @@ module.exports = {
         "no-debugger": "error",
         "no-duplicate-case": "error",
         "no-duplicate-imports": "error",
+        "no-else-return": "error",
         "no-empty": "error",
         "no-empty-function": "warn",
         "no-eval": "error",
@@ -353,32 +353,6 @@ module.exports = {
         "use-isnan": "error",
         "valid-typeof": "off",
         "yoda": "error",
-        "@typescript-eslint/tslint/config": [
-            "error",
-            {
-                "rules": {
-                    "comment-type": [
-                        true,
-                        "singleline",
-                        "multiline",
-                        "doc",
-                        "directive"
-                    ],
-                    "unnecessary-else": true,
-                    "whitespace": [
-                        true,
-                        "check-branch",
-                        "check-decl",
-                        "check-operator",
-                        "check-separator",
-                        "check-rest-spread",
-                        "check-type",
-                        "check-type-operator",
-                        "check-preblock"
-                    ]
-                }
-            }
-        ],
         "@nrwl/nx/enforce-module-boundaries": [
             "error",
             {
