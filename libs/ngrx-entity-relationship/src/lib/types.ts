@@ -1,5 +1,5 @@
 declare global {
-    // tslint:disable-next-line:class-name
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     export interface SELECTOR_META {
         flatKey?: string;
         gqlFields?: Array<string | number> | Record<string, string>;
@@ -8,6 +8,7 @@ declare global {
 
 export type UNKNOWN = any;
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export interface STORE_SELECTOR<T, V> {
     (state: T): V;
     idsKey?: keyof any;
@@ -33,6 +34,7 @@ export type ENTITY_STATE_CUSTOM<EK extends keyof any, IK extends keyof any, ENTI
     [key in IK]?: Array<ID_TYPES>;
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export interface ENTITY_STATE<E> {
     ids?: Array<ID_TYPES>;
     entities: {
@@ -61,6 +63,7 @@ export type CACHE_CHECKS = Map<ID_TYPES | null, UNKNOWN>;
 export type CACHE_CHECKS_SET<S> = Map<STORE_SELECTOR<S, ENTITY_STATE<UNKNOWN>>, CACHE_CHECKS>;
 export type CACHE<S> = Map<string, Map<string | null, [CACHE_CHECKS_SET<S>, UNKNOWN]>>;
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export interface ENTITY_SELECTOR<S = any, E = any> {
     ngrxEntityRelationship: string;
     meta: SELECTOR_META;

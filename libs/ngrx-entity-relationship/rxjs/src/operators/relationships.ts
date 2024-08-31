@@ -2,6 +2,7 @@ import {HANDLER_ROOT_ENTITIES, HANDLER_ROOT_ENTITY, ID_TYPES, toFactorySelector}
 import {iif, Observable, of} from 'rxjs';
 import {map, switchMap} from 'rxjs/operators';
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export interface STORE_INSTANCE<T> {
     select<K>(mapFn: (state: T) => K): Observable<K>;
 }

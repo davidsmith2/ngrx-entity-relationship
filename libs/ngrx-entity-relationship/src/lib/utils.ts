@@ -110,7 +110,7 @@ export function mergeCache<S>(from: CACHE_CHECKS_SET<S> | undefined, to: CACHE_C
 
 export function argsToArray<T>(args: {length: number} & {[key: number]: T}): Array<T> {
     const result = [];
-    // tslint:disable-next-line:prefer-for-of
+    // eslint-disable-next-line @typescript-eslint/prefer-for-of
     for (let i = 0; i < args.length; i += 1) {
         result.push(args[i]);
     }

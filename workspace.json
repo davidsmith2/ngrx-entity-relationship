@@ -20,13 +20,14 @@
           }
         },
         "lint": {
-          "executor": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "libs/ngrx-entity-relationship/tsconfig.lib.json",
-              "libs/ngrx-entity-relationship/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/ngrx-entity-relationship/**/*"]
+            "lintFilePatterns": [
+              "libs/ngrx-entity-relationship/graphql/src/**/*.ts",
+              "libs/ngrx-entity-relationship/rxjs/src/**/*.ts",
+              "libs/ngrx-entity-relationship/src/lib/**/*.ts",
+              "libs/ngrx-entity-relationship/test/**/*.ts"
+            ]
           }
         },
         "test": {
