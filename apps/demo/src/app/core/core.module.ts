@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CoreComponent } from './core.component';
 import { RouterModule } from '@angular/router';
 import { RootEntityComponent } from './root-entity/root-entity.component';
+import { RootEntityService } from './root-entity/root-entity.service';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,9 @@ import { RootEntityComponent } from './root-entity/root-entity.component';
   ],
   exports: [
     CoreComponent
+  ],
+  providers: [
+    RootEntityService
   ]
 })
 export class CoreModule { }
