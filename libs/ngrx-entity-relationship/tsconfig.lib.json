@@ -2,19 +2,13 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "target": "es3",
+    "target": "es2015",
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
-    "importHelpers": false,
     "types": [],
-    "lib": ["dom", "es2015"]
+    "lib": ["dom", "es2018"]
   },
-  "angularCompilerOptions": {
-    "skipTemplateCodegen": true,
-    "strictMetadataEmit": true,
-    "enableResourceInlining": true
-  },
-  "files": ["src/public_api.ts", "rxjs/src/public_api.ts", "graphql/src/public_api.ts"],
-  "exclude": ["src/test.ts", "**/*.spec.ts"]
+  "exclude": ["src/test.ts", "**/*.spec.ts"],
+  "include": ["**/*.ts"]
 }

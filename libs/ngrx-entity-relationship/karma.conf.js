@@ -8,13 +8,9 @@ module.exports = function (config) {
     const baseConfig = getBaseKarmaConfig();
     config.set({
         ...baseConfig,
-        coverageReporter: {
-            ...baseConfig.coverageReporter,
-            dir: join(__dirname, '../../test-reports/coverage'),
-        },
-        junitReporter: {
-            ...baseConfig.junitReporter,
-            outputDir: join(__dirname, '../../test-reports'),
+        coverageIstanbulReporter: {
+            ...baseConfig.coverageIstanbulReporter,
+            dir: join(__dirname, '../../coverage/libs/ngrx-entity-relationship'),
         },
     });
 };

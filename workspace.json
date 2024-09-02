@@ -1,34 +1,145 @@
 {
   "version": 2,
   "projects": {
+    "demo": {
+      "projectType": "application",
+      "root": "apps/demo",
+      "sourceRoot": "apps/demo/src",
+      "prefix": "ngrx-entity-relationship",
+      "targets": {
+        "build": {
+          "executor": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/demo",
+            "index": "apps/demo/src/index.html",
+            "main": "apps/demo/src/main.ts",
+            "polyfills": "apps/demo/src/polyfills.ts",
+            "tsConfig": "apps/demo/tsconfig.app.json",
+            "assets": ["apps/demo/src/favicon.ico", "apps/demo/src/assets"],
+            "styles": ["apps/demo/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/demo/src/environments/environment.ts",
+                  "with": "apps/demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "executor": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "demo:build:production"
+            },
+            "development": {
+              "browserTarget": "demo:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "demo:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/demo/src/**/*.ts", "apps/demo/src/**/*.html"]
+          }
+        },
+        "test": {
+          "executor": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/demo/src/test.ts",
+            "tsConfig": "apps/demo/tsconfig.spec.json",
+            "karmaConfig": "apps/demo/karma.conf.js",
+            "polyfills": "apps/demo/src/polyfills.ts",
+            "styles": [],
+            "scripts": [],
+            "assets": []
+          }
+        }
+      }
+    },
+    "demo-e2e": {
+      "root": "apps/demo-e2e",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/demo-e2e/protractor.conf.js"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "demo:serve:production"
+            },
+            "development": {
+              "devServerTarget": "demo:serve:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/demo-e2e/**/*.ts"]
+          }
+        }
+      }
+    },
     "ngrx-entity-relationship": {
       "projectType": "library",
       "root": "libs/ngrx-entity-relationship",
-      "sourceRoot": "libs/ngrx-entity-relationship",
+      "sourceRoot": "libs/ngrx-entity-relationship/src",
       "prefix": "ngrx-entity-relationship",
       "targets": {
         "build": {
           "executor": "@nrwl/angular:package",
+          "outputs": ["dist/libs/ngrx-entity-relationship"],
           "options": {
-            "tsConfig": "libs/ngrx-entity-relationship/tsconfig.lib.json",
             "project": "libs/ngrx-entity-relationship/ng-package.json"
           },
           "configurations": {
             "production": {
               "tsConfig": "libs/ngrx-entity-relationship/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/ngrx-entity-relationship/tsconfig.lib.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/ngrx-entity-relationship/graphql/src/**/*.ts",
-              "libs/ngrx-entity-relationship/rxjs/src/**/*.ts",
-              "libs/ngrx-entity-relationship/src/lib/**/*.ts",
-              "libs/ngrx-entity-relationship/test/**/*.ts"
-            ]
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "test": {
           "executor": "@angular-devkit/build-angular:karma",
@@ -36,10 +147,58 @@
             "main": "libs/ngrx-entity-relationship/src/test.ts",
             "tsConfig": "libs/ngrx-entity-relationship/tsconfig.spec.json",
             "karmaConfig": "libs/ngrx-entity-relationship/karma.conf.js"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ngrx-entity-relationship/src/**/*.ts",
+              "libs/ngrx-entity-relationship/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "ngrx-entity-relationship-legacy": {
+      "projectType": "library",
+      "root": "libs/ngrx-entity-relationship-legacy",
+      "sourceRoot": "libs/ngrx-entity-relationship-legacy",
+      "prefix": "ngrx-entity-relationship",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/ngrx-entity-relationship-legacy/tsconfig.lib.json",
+            "project": "libs/ngrx-entity-relationship-legacy/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/ngrx-entity-relationship-legacy/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ngrx-entity-relationship-legacy/graphql/src/**/*.ts",
+              "libs/ngrx-entity-relationship-legacy/rxjs/src/**/*.ts",
+              "libs/ngrx-entity-relationship-legacy/src/lib/**/*.ts",
+              "libs/ngrx-entity-relationship-legacy/test/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/ngrx-entity-relationship-legacy/src/test.ts",
+            "tsConfig": "libs/ngrx-entity-relationship-legacy/tsconfig.spec.json",
+            "karmaConfig": "libs/ngrx-entity-relationship-legacy/karma.conf.js"
           },
           "configurations": {
             "ie": {
-              "tsConfig": "libs/ngrx-entity-relationship/tsconfig.ie.spec.json",
+              "tsConfig": "libs/ngrx-entity-relationship-legacy/tsconfig.ie.spec.json",
               "browsers": "IECi"
             }
           }
@@ -52,9 +211,14 @@
   },
   "generators": {
     "@nrwl/angular:application": {
-      "unitTestRunner": "karma"
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "karma",
+      "e2eTestRunner": "protractor"
     },
     "@nrwl/angular:library": {
+      "style": "css",
+      "linter": "eslint",
       "unitTestRunner": "karma",
       "strict": true
     },

@@ -22,7 +22,14 @@
     }
   },
   "projects": {
+    "demo": {
+      "tags": []
+    },
+    "demo-e2e": {},
     "ngrx-entity-relationship": {
+      "tags": []
+    },
+    "ngrx-entity-relationship-legacy": {
       "tags": []
     }
   }

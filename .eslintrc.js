@@ -21,14 +21,6 @@ module.exports = {
         "prettier"
     ],
     "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "project": [
-            'libs/ngrx-entity-relationship/tsconfig.lib.json',
-            'libs/ngrx-entity-relationship/tsconfig.spec.json'
-        ],
-        "tsconfigRootDir": __dirname,
-        "sourceType": "module"
-    },
     "plugins": [
         "eslint-plugin-jsdoc",
         "eslint-plugin-prefer-arrow",
@@ -89,7 +81,7 @@ module.exports = {
         "@typescript-eslint/no-empty-function": "warn",
         "@typescript-eslint/no-empty-interface": "error",
         "@typescript-eslint/no-explicit-any": "off",
-        "@typescript-eslint/no-extraneous-class": "error",
+        "@typescript-eslint/no-extraneous-class": "warn",
         "@typescript-eslint/no-floating-promises": "error",
         "@typescript-eslint/no-for-in-array": "error",
         "@typescript-eslint/no-inferrable-types": [
@@ -140,7 +132,7 @@ module.exports = {
             }
         ],
         "@typescript-eslint/typedef": [
-            "error",
+            "warn",
             {
                 "memberVariableDeclaration": true,
                 "parameter": true,
@@ -183,7 +175,7 @@ module.exports = {
         "import/no-default-export": "off",
         "import/no-deprecated": "warn",
         "import/no-internal-modules": "off",
-        "import/order": "error",
+        "import/order": "warn",
         "jest/no-focused-tests": "error",
         "jsdoc/check-alignment": "error",
         "jsdoc/check-indentation": "error",
