@@ -4,6 +4,7 @@ import { CoreComponent } from './core.component';
 import { RouterModule } from '@angular/router';
 import { RootEntityComponent } from './root-entity/root-entity.component';
 import { RootEntityService } from './root-entity/root-entity.service';
+import { DataModule } from './store/data.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { RootEntityService } from './root-entity/root-entity.service';
           }
         ]
       }
-    ])
+    ]),
+    DataModule
   ],
   exports: [
     CoreComponent

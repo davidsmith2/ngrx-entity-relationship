@@ -7,10 +7,7 @@ import {ngrxEntityRelationshipReducer} from 'ngrx-entity-relationship';
 import {RouterModule} from '@angular/router';
 
 import {AppComponent} from './app.component';
-import {DataModule} from './data/data.module';
-import {EntityModule} from './entity/entity.module';
 import {EntityService} from './entity/store/entity.service';
-import { CoreModule } from './core/core.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -24,15 +21,12 @@ import { CoreModule } from './core/core.module';
             },
         ),
         EffectsModule.forRoot([]),
-        EntityModule,
-        DataModule,
         RouterModule.forRoot([
             {
                 path: 'core',
                 loadChildren: () => import('./core/core.module').then(m => m.CoreModule),
             }
-        ]),
-        CoreModule,
+        ])
     ],
     bootstrap: [AppComponent],
     providers: [EntityService],

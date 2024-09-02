@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
-import { FightCollection } from "../../data/store/collections/fight.collection";
 import { relatedEntity, relationships, rootEntity } from "ngrx-entity-relationship";
 import { Store } from "@ngrx/store";
-import { Fight } from "../../data/store/models";
 import { map, Observable } from "rxjs";
-import { HeroCollection } from "../../data/store/collections/hero.collection";
+import { Fight } from "../store/models";
+import { FightCollection } from "../store/collections/fight.collection";
+import { HeroCollection } from "../store/collections/hero.collection";
 
 @Injectable()
 export class RootEntityService {
