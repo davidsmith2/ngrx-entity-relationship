@@ -5,11 +5,14 @@ import { RouterModule } from '@angular/router';
 import { RootEntityComponent } from './root-entity/root-entity.component';
 import { RootEntityService } from './root-entity/root-entity.service';
 import { DataModule } from './store/data.module';
+import { RootEntitiesComponent } from './root-entities/root-entities.component';
+import { RootEntitiesService } from './root-entities/root-entities.service';
 
 @NgModule({
   declarations: [
     CoreComponent,
-    RootEntityComponent
+    RootEntityComponent,
+    RootEntitiesComponent
   ],
   imports: [
     CommonModule,
@@ -21,6 +24,10 @@ import { DataModule } from './store/data.module';
           {
             path: 'root-entity',
             component: RootEntityComponent
+          },
+          {
+            path: 'root-entities',
+            component: RootEntitiesComponent
           }
         ]
       }
@@ -31,7 +38,8 @@ import { DataModule } from './store/data.module';
     CoreComponent
   ],
   providers: [
-    RootEntityService
+    RootEntityService,
+    RootEntitiesService
   ]
 })
 export class CoreModule { }
