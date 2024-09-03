@@ -7,12 +7,15 @@ import { RootEntityService } from './root-entity/root-entity.service';
 import { DataModule } from './store/data.module';
 import { RootEntitiesComponent } from './root-entities/root-entities.component';
 import { RootEntitiesService } from './root-entities/root-entities.service';
+import { RelatedEntityComponent } from './related-entity/related-entity.component';
+import { RelatedEntityService } from './related-entity/related-entity.service';
 
 @NgModule({
   declarations: [
     CoreComponent,
     RootEntityComponent,
-    RootEntitiesComponent
+    RootEntitiesComponent,
+    RelatedEntityComponent
   ],
   imports: [
     CommonModule,
@@ -28,6 +31,10 @@ import { RootEntitiesService } from './root-entities/root-entities.service';
           {
             path: 'root-entities',
             component: RootEntitiesComponent
+          },
+          {
+            path: 'related-entity',
+            component: RelatedEntityComponent
           }
         ]
       }
@@ -39,7 +46,8 @@ import { RootEntitiesService } from './root-entities/root-entities.service';
   ],
   providers: [
     RootEntityService,
-    RootEntitiesService
+    RootEntitiesService,
+    RelatedEntityService
   ]
 })
 export class CoreModule { }
