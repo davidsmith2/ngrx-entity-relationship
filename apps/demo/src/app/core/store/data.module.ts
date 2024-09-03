@@ -7,15 +7,16 @@ import {reduceFlat, reduceGraph, rootEntity} from 'ngrx-entity-relationship';
 import {FightCollection} from './collections/fight.collection';
 import {HeroCollection} from './collections/hero.collection';
 import {entityConfig} from './config';
+import { VillainCollection } from './collections/villain.collection';
 
 @NgModule({
     imports: [CommonModule, EntityDataModule.forRoot(entityConfig)],
-    providers: [FightCollection, HeroCollection]
+    providers: [FightCollection, HeroCollection, VillainCollection]
 })
 export class DataModule {
-    constructor(hero: HeroCollection, fight: FightCollection, store: Store) {
+    constructor(hero: HeroCollection, villain: VillainCollection, fight: FightCollection, store: Store) {
         hero.addManyToCache([]);
-        // villain.addManyToCache([]);
+        villain.addManyToCache([]);
         fight.addManyToCache([]);
 
         store.dispatch(
@@ -33,7 +34,6 @@ export class DataModule {
                 selector: rootEntity(hero),
             }),
         );
-        /*
         store.dispatch(
             reduceGraph({
                 data: [
@@ -49,7 +49,6 @@ export class DataModule {
                 selector: rootEntity(villain),
             }),
         );
-        */
         store.dispatch(
             reduceFlat({
                 data: {

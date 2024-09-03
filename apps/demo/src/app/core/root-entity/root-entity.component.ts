@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { RootEntityService } from './root-entity.service';
+import { RootEntityService, TransformedFight } from './root-entity.service';
 import { Observable } from 'rxjs';
 import { Fight } from '../../data/store/models';
 
@@ -11,13 +11,11 @@ import { Fight } from '../../data/store/models';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RootEntityComponent implements OnInit {
-  fight$: Observable<Fight> = this.rootEntityService.fight$;
+  rootEntity1$: Observable<Fight> = this.rootEntityService.rootEntity1$;
+  rootEntity2$: Observable<TransformedFight> = this.rootEntityService.rootEntity2$;
 
-  constructor(private rootEntityService: RootEntityService) {
-    console.log(this.rootEntityService)
-  }
+  constructor(private rootEntityService: RootEntityService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }
