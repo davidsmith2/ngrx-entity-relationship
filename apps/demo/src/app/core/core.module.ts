@@ -13,6 +13,8 @@ import { RootEntitiesModule } from './root-entities/root-entities.module';
 import { RelatedEntityModule } from './related-entity/related-entity.module';
 import { ChildEntityComponent } from './child-entity/child-entity.component';
 import { ChildEntityResolver } from './child-entity/child-entity.resolver';
+import { ChildrenEntitiesComponent } from './children-entities/children-entities.component';
+import { ChildrenEntitiesResolver } from './children-entities/children-entities.resolver';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,13 @@ import { ChildEntityResolver } from './child-entity/child-entity.resolver';
             component: ChildEntityComponent,
             resolve: {
               data: ChildEntityResolver
+            }
+          },
+          {
+            path: 'children-entities',
+            component: ChildrenEntitiesComponent,
+            resolve: {
+              data: ChildrenEntitiesResolver
             }
           }
         ]
