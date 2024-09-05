@@ -1,19 +1,12 @@
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
-import {EntityDataModule} from '@ngrx/data';
-import {Store} from '@ngrx/store';
-import {reduceFlat, reduceGraph, rootEntity} from 'ngrx-entity-relationship';
 
-import {FightCollection} from './collections/fight.collection';
-import {HeroCollection} from './collections/hero.collection';
-import {entityConfig} from './config';
-import { VillainCollection } from './collections/villain.collection';
 
 @NgModule({
-    imports: [CommonModule, EntityDataModule.forRoot(entityConfig)],
-    providers: [FightCollection, HeroCollection, VillainCollection]
+    imports: [CommonModule]
 })
 export class DataModule {
+    /*
     constructor(hero: HeroCollection, villain: VillainCollection, fight: FightCollection, store: Store) {
         hero.addManyToCache([]);
         villain.addManyToCache([]);
@@ -76,4 +69,5 @@ export class DataModule {
             }),
         );
     }
+    */
 }

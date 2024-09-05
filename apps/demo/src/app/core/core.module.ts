@@ -3,19 +3,18 @@ import { CommonModule } from '@angular/common';
 import { CoreComponent } from './core.component';
 import { RouterModule } from '@angular/router';
 import { RootEntityComponent } from './root-entity/root-entity.component';
-import { RootEntityService } from './root-entity/root-entity.service';
-import { DataModule } from './store/data.module';
 import { RootEntitiesComponent } from './root-entities/root-entities.component';
-import { RootEntitiesService } from './root-entities/root-entities.service';
 import { RelatedEntityComponent } from './related-entity/related-entity.component';
-import { RelatedEntityService } from './related-entity/related-entity.service';
+import { RootEntityResolver } from './root-entity/root-entity.resolver';
+import { RootEntitiesResolver } from './root-entities/root-entities.resolver';
+import { RelatedEntityResolver } from './related-entity/related-entity.resolver';
+import { RootEntityModule } from './root-entity/root-entity.module';
+import { RootEntitiesModule } from './root-entities/root-entities.module';
+import { RelatedEntityModule } from './related-entity/related-entity.module';
 
 @NgModule({
   declarations: [
-    CoreComponent,
-    RootEntityComponent,
-    RootEntitiesComponent,
-    RelatedEntityComponent
+    CoreComponent
   ],
   imports: [
     CommonModule,
@@ -26,28 +25,35 @@ import { RelatedEntityService } from './related-entity/related-entity.service';
         children: [
           {
             path: 'root-entity',
-            component: RootEntityComponent
+            component: RootEntityComponent,
+            resolve: {
+              data: RootEntityResolver
+            }
           },
           {
             path: 'root-entities',
-            component: RootEntitiesComponent
+            component: RootEntitiesComponent,
+            resolve: {
+              data: RootEntitiesResolver
+            }
           },
           {
             path: 'related-entity',
-            component: RelatedEntityComponent
+            component: RelatedEntityComponent,
+            resolve: {
+              data: RelatedEntityResolver
+            }
           }
         ]
       }
     ]),
-    DataModule
+    RootEntityModule,
+    RootEntitiesModule,
+    RelatedEntityModule
   ],
   exports: [
     CoreComponent
   ],
-  providers: [
-    RootEntityService,
-    RootEntitiesService,
-    RelatedEntityService
-  ]
+  providers: [ ]
 })
 export class CoreModule { }

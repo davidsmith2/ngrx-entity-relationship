@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { RootEntityService, TransformedFight } from './root-entity.service';
+import { RootEntityService } from './root-entity.service';
 import { Observable } from 'rxjs';
-import { Fight } from '../../data/store/models';
+import { Artist, TransformedArtist } from '../store/models';
 
 @Component({
   selector: 'ngrx-entity-relationship-root-entity',
@@ -11,8 +11,8 @@ import { Fight } from '../../data/store/models';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RootEntityComponent implements OnInit {
-  rootEntity1$: Observable<Fight> = this.rootEntityService.rootEntity1$;
-  rootEntity2$: Observable<TransformedFight> = this.rootEntityService.rootEntity2$;
+  rootEntity1$: Observable<Artist> = this.rootEntityService.rootEntity1$;
+  rootEntity2$: Observable<TransformedArtist> = this.rootEntityService.rootEntity2$;
 
   constructor(private rootEntityService: RootEntityService) { }
 

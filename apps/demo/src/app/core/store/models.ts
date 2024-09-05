@@ -17,3 +17,21 @@ export interface Fight {
     hero?: Hero;
     heroId?: string;
 }
+
+export interface Artist {
+    name: string;
+    albumTitle: string;
+    album: Album;
+}
+
+export interface Album {
+    title: string;
+}
+
+export interface Song {
+    title: string;
+}
+
+export class TransformedArtist {
+    constructor(public data: Artist) { }
+}

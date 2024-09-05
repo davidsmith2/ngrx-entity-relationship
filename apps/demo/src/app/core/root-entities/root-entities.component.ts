@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { RootEntitiesService } from './root-entities.service';
 import { Observable } from 'rxjs';
-import { Fight } from '../../data/store/models';
+import { Artist } from '../store/models';
 
 @Component({
   selector: 'ngrx-entity-relationship-root-entity',
@@ -11,7 +11,7 @@ import { Fight } from '../../data/store/models';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RootEntitiesComponent implements OnInit {
-  rootEntities$: Observable<Array<Fight>> = this.rootEntitiesService.rootEntities$;
+  rootEntities$: Observable<Array<Artist>> = this.rootEntitiesService.rootEntities$;
 
   constructor(private rootEntitiesService: RootEntitiesService) { }
 

@@ -1,18 +1,15 @@
-export function selectId(entity: {uuid: string}): string {
-    return entity.uuid;
-}
+import { Album, Artist, Song } from "./models";
 
 export const entityConfig = {
     entityMetadata: {
-        Hero: {
-            selectId,
+        Artist: {
+            selectId: (entity: Artist): string => entity.name,
         },
-        Villain: {
-            selectId,
+        Album: {
+            selectId: (entity: Album): string => entity.title,
         },
-        Fight: {},
-    },
-    pluralNames: {
-        Hero: 'Heroes',
-    },
+        Song: {
+            selectId: (entity: Song): string => entity.title,
+        }
+    }
 };

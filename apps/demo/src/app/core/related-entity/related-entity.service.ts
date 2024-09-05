@@ -3,26 +3,26 @@ import { relatedEntity, relationships, rootEntity } from "ngrx-entity-relationsh
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { Fight } from "../store/models";
-import { FightCollection } from "../store/collections/fight.collection";
-import { HeroCollection } from "../store/collections/hero.collection";
+import { Artist } from "../store/models";
+import { ArtistCollection } from "../store/collections/artist.collection";
+import { AlbumCollection } from "../store/collections/album.collection";
 
 @Injectable()
 export class RelatedEntityService {
-  public readonly relatedEntity1$: Observable<Fight> = this.fight.selectors$.entities$.pipe(
+  public readonly relatedEntity1$: Observable<Artist> = this.artistCollection.selectors$.entities$.pipe(
     map(entities => entities[0]),
     relationships(
       this.store,
       rootEntity(
-        this.fight,
-        relatedEntity(this.hero, 'heroId', 'hero')
+        this.artistCollection,
+        relatedEntity(this.albumCollection, 'albumTitle', 'album')
       )
     )
   );
 
   constructor(
     protected readonly store: Store<unknown>,
-    protected readonly fight: FightCollection,
-    protected readonly hero: HeroCollection
+    protected readonly artistCollection: ArtistCollection,
+    protected readonly albumCollection: AlbumCollection
   ) { }
 }

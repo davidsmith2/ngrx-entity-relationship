@@ -8,6 +8,8 @@ import {RouterModule} from '@angular/router';
 
 import {AppComponent} from './app.component';
 import {EntityService} from './entity/store/entity.service';
+import { EntityDataModule } from '@ngrx/data';
+import { entityConfig } from './core/store/config';
 
 @NgModule({
     declarations: [AppComponent],
@@ -21,6 +23,7 @@ import {EntityService} from './entity/store/entity.service';
             },
         ),
         EffectsModule.forRoot([]),
+        EntityDataModule.forRoot(entityConfig),
         RouterModule.forRoot([
             {
                 path: 'core',
