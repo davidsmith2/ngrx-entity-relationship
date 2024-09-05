@@ -11,7 +11,7 @@ import { Artist } from '../../data/artist/artist.interface';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RootEntitiesComponent implements OnInit {
-  rootEntities$: Observable<Array<Artist>> = this.rootEntitiesService.rootEntities$;
+  rootEntities1$: Observable<Array<Artist>> = this.rootEntitiesService.rootEntities1$;
 
   constructor(private rootEntitiesService: RootEntitiesService) { }
 

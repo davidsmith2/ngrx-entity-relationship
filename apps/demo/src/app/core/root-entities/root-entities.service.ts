@@ -7,7 +7,7 @@ import { ArtistCollection } from "../../data/artist/artist.collection";
 
 @Injectable()
 export class RootEntitiesService {
-  public readonly rootEntities$: Observable<Array<Artist>> = this.artistCollection.selectors$.entities$.pipe(
+  public readonly rootEntities1$: Observable<Array<Artist>> = this.artistCollection.selectors$.entities$.pipe(
     relationships(
       this.store,
       rootEntities(rootEntity(this.artistCollection))
