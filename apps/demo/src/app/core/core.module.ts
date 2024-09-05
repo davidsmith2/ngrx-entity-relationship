@@ -11,6 +11,8 @@ import { RelatedEntityResolver } from './related-entity/related-entity.resolver'
 import { RootEntityModule } from './root-entity/root-entity.module';
 import { RootEntitiesModule } from './root-entities/root-entities.module';
 import { RelatedEntityModule } from './related-entity/related-entity.module';
+import { ChildEntityComponent } from './child-entity/child-entity.component';
+import { ChildEntityResolver } from './child-entity/child-entity.resolver';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,13 @@ import { RelatedEntityModule } from './related-entity/related-entity.module';
             component: RelatedEntityComponent,
             resolve: {
               data: RelatedEntityResolver
+            }
+          },
+          {
+            path: 'child-entity',
+            component: ChildEntityComponent,
+            resolve: {
+              data: ChildEntityResolver
             }
           }
         ]

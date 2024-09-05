@@ -26,6 +26,7 @@ export interface Artist {
 
 export interface Album {
     title: string;
+    artistName: string;
 }
 
 export interface Song {
