@@ -10,9 +10,7 @@ import { reduceGraph, rootEntity } from 'ngrx-entity-relationship';
 import { AlbumCollection } from '../../data/album/album.collection';
 import { ArtistCollection } from '../../data/artist/artist.collection';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ChildEntityResolver implements Resolve<boolean> {
   constructor(
     private store: Store,

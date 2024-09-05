@@ -15,6 +15,8 @@ import { ChildEntityComponent } from './child-entity/child-entity.component';
 import { ChildEntityResolver } from './child-entity/child-entity.resolver';
 import { ChildrenEntitiesComponent } from './children-entities/children-entities.component';
 import { ChildrenEntitiesResolver } from './children-entities/children-entities.resolver';
+import { ChildEntityModule } from './child-entity/child-entity.module';
+import { ChildrenEntitiesModule } from './children-entities/children-entities.module';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,9 @@ import { ChildrenEntitiesResolver } from './children-entities/children-entities.
     ]),
     RootEntityModule,
     RootEntitiesModule,
-    RelatedEntityModule
+    RelatedEntityModule,
+    ChildEntityModule,
+    ChildrenEntitiesModule
   ],
   exports: [
     CoreComponent

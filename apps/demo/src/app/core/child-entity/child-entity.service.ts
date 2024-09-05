@@ -6,9 +6,7 @@ import { Artist } from '../../data/artist/artist.interface';
 import { ArtistCollection } from '../../data/artist/artist.collection';
 import { AlbumCollection } from '../../data/album/album.collection';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ChildEntityService {
   public readonly childEntity1$: Observable<Artist> = this.artistCollection.selectors$.entities$.pipe(
     map(entities => entities[0]),

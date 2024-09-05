@@ -7,9 +7,7 @@ import { map } from 'rxjs/operators';
 import { Album } from '../../data/album/album.interface';
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ChildrenEntitiesService {
   public readonly childrenEntities1$: Observable<Album> = this.albumCollection.selectors$.entities$.pipe(
     map(entities => entities[0]),
