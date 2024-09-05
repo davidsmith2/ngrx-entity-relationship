@@ -6,9 +6,9 @@ import {
 } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { ArtistCollection } from '../store/collections/artist.collection';
-import { AlbumCollection } from '../store/collections/album.collection';
 import { reduceGraph, rootEntity } from 'ngrx-entity-relationship';
+import { AlbumCollection } from '../../data/album/album.collection';
+import { ArtistCollection } from '../../data/artist/artist.collection';
 
 @Injectable({
   providedIn: 'root'

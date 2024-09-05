@@ -3,27 +3,20 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {EffectsModule} from '@ngrx/effects';
 import {StoreModule} from '@ngrx/store';
-import {ngrxEntityRelationshipReducer} from 'ngrx-entity-relationship';
 import {RouterModule} from '@angular/router';
 
 import {AppComponent} from './app.component';
-import {EntityService} from './entity/store/entity.service';
-import { EntityDataModule } from '@ngrx/data';
-import { entityConfig } from './core/store/config';
+import { DataModule } from './data/data.module';
+import { ngrxEntityRelationshipReducer } from 'ngrx-entity-relationship';
 
 @NgModule({
     declarations: [AppComponent],
     imports: [
         BrowserModule,
         HttpClientModule,
-        StoreModule.forRoot(
-            {},
-            {
-                metaReducers: [ngrxEntityRelationshipReducer],
-            },
-        ),
+        StoreModule.forRoot({}, {metaReducers: [ngrxEntityRelationshipReducer]}),
         EffectsModule.forRoot([]),
-        EntityDataModule.forRoot(entityConfig),
+        DataModule,
         RouterModule.forRoot([
             {
                 path: 'core',
@@ -31,7 +24,6 @@ import { entityConfig } from './core/store/config';
             }
         ])
     ],
-    bootstrap: [AppComponent],
-    providers: [EntityService],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}

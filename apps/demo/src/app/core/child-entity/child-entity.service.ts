@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ArtistCollection } from '../store/collections/artist.collection';
-import { AlbumCollection } from '../store/collections/album.collection';
 import { map, Observable } from 'rxjs';
-import { Artist } from '../store/models';
 import { childEntity, relationships, rootEntity } from 'ngrx-entity-relationship';
+import { Artist } from '../../data/artist/artist.interface';
+import { ArtistCollection } from '../../data/artist/artist.collection';
+import { AlbumCollection } from '../../data/album/album.collection';
 
 @Injectable({
   providedIn: 'root'

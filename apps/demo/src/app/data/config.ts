@@ -1,4 +1,6 @@
-import { Album, Artist, Song } from "./models";
+import { Album } from "./album/album.interface";
+import { Artist } from "./artist/artist.interface";
+import { Song } from "./song/song.interface";
 
 export const entityConfig = {
     entityMetadata: {

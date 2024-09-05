@@ -5,9 +5,9 @@ import {
   ActivatedRouteSnapshot
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { ArtistCollection } from '../store/collections/artist.collection';
 import { Store } from '@ngrx/store';
 import { reduceGraph, rootEntity } from 'ngrx-entity-relationship';
+import { ArtistCollection } from '../../data/artist/artist.collection';
 
 @Injectable()
 export class RootEntityResolver implements Resolve<boolean> {

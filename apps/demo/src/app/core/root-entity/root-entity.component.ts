@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { RootEntityService } from './root-entity.service';
 import { Observable } from 'rxjs';
-import { Artist, TransformedArtist } from '../store/models';
+import { Artist, TransformedArtist } from '../../data/artist/artist.interface';
 
 @Component({
   selector: 'ngrx-entity-relationship-root-entity',

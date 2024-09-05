@@ -2,8 +2,8 @@ import { Injectable } from "@angular/core";
 import { relationships, rootEntity } from "ngrx-entity-relationship";
 import { Store } from "@ngrx/store";
 import { map, Observable } from "rxjs";
-import { Artist, TransformedArtist } from "../store/models";
-import { ArtistCollection } from "../store/collections/artist.collection";
+import { Artist, TransformedArtist } from "../../data/artist/artist.interface";
+import { ArtistCollection } from "../../data/artist/artist.collection";
 
 @Injectable()
 export class RootEntityService {

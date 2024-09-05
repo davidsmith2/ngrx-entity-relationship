@@ -3,9 +3,9 @@ import { relatedEntity, relationships, rootEntity } from "ngrx-entity-relationsh
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { Artist } from "../store/models";
-import { ArtistCollection } from "../store/collections/artist.collection";
-import { AlbumCollection } from "../store/collections/album.collection";
+import { Artist } from "../../data/artist/artist.interface";
+import { ArtistCollection } from "../../data/artist/artist.collection";
+import { AlbumCollection } from "../../data/album/album.collection";
 
 @Injectable()
 export class RelatedEntityService {

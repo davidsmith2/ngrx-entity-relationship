@@ -6,8 +6,8 @@ import {
 } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { ArtistCollection } from '../store/collections/artist.collection';
 import { reduceGraph, rootEntity } from 'ngrx-entity-relationship';
+import { ArtistCollection } from '../../data/artist/artist.collection';
 
 @Injectable()
 export class RootEntitiesResolver implements Resolve<boolean> {
