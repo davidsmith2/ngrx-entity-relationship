@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { RootEntityComponent } from './root-entity/root-entity.component';
 import { RootEntitiesComponent } from './root-entities/root-entities.component';
 import { RelatedEntityComponent } from './related-entity/related-entity.component';
-import { RootEntityResolver } from './root-entity/root-entity.resolver';
 import { RootEntitiesResolver } from './root-entities/root-entities.resolver';
 import { RelatedEntityResolver } from './related-entity/related-entity.resolver';
 import { RootEntityModule } from './root-entity/root-entity.module';
@@ -43,10 +42,7 @@ import { ChildrenEntitiesSelectorModule } from './children-entities-selector/chi
         children: [
           {
             path: 'root-entity',
-            component: RootEntityComponent,
-            resolve: {
-              data: RootEntityResolver
-            }
+            component: RootEntityComponent
           },
           {
             path: 'root-entity-selector',
