@@ -17,6 +17,18 @@ import { ChildrenEntitiesComponent } from './children-entities/children-entities
 import { ChildrenEntitiesResolver } from './children-entities/children-entities.resolver';
 import { ChildEntityModule } from './child-entity/child-entity.module';
 import { ChildrenEntitiesModule } from './children-entities/children-entities.module';
+import { RootEntitySelectorModule } from './root-entity-selector/root-entity-selector.module';
+import { RootEntitySelectorComponent } from './root-entity-selector/root-entity-selector.component';
+import { RootEntitySelectorResolver } from './root-entity-selector/root-entity-selector.resolver';
+import { RelatedEntitySelectorComponent } from './related-entity-selector/related-entity-selector.component';
+import { RelatedEntitySelectorResolver } from './related-entity-selector/related-entity-selector.resolver';
+import { RelatedEntitySelectorModule } from './related-entity-selector/related-entity-selector.module';
+import { ChildEntitySelectorComponent } from './child-entity-selector/child-entity-selector.component';
+import { ChildEntitySelectorResolver } from './child-entity-selector/child-entity-selector.resolver';
+import { ChildEntitySelectorModule } from './child-entity-selector/child-entity-selector.module';
+import { ChildrenEntitiesSelectorComponent } from './children-entities-selector/children-entities-selector.component';
+import { ChildrenEntitiesSelectorResolver } from './children-entities-selector/children-entities-selector.resolver';
+import { ChildrenEntitiesSelectorModule } from './children-entities-selector/children-entities-selector.module';
 
 @NgModule({
   declarations: [
@@ -37,6 +49,13 @@ import { ChildrenEntitiesModule } from './children-entities/children-entities.mo
             }
           },
           {
+            path: 'root-entity-selector',
+            component: RootEntitySelectorComponent,
+            resolve: {
+              data: RootEntitySelectorResolver
+            }
+          },
+          {
             path: 'root-entities',
             component: RootEntitiesComponent,
             resolve: {
@@ -51,6 +70,13 @@ import { ChildrenEntitiesModule } from './children-entities/children-entities.mo
             }
           },
           {
+            path: 'related-entity-selector',
+            component: RelatedEntitySelectorComponent,
+            resolve: {
+              data: RelatedEntitySelectorResolver
+            }
+          },
+          {
             path: 'child-entity',
             component: ChildEntityComponent,
             resolve: {
@@ -58,10 +84,24 @@ import { ChildrenEntitiesModule } from './children-entities/children-entities.mo
             }
           },
           {
+            path: 'child-entity-selector',
+            component: ChildEntitySelectorComponent,
+            resolve: {
+              data: ChildEntitySelectorResolver
+            }
+          },
+          {
             path: 'children-entities',
             component: ChildrenEntitiesComponent,
             resolve: {
               data: ChildrenEntitiesResolver
+            }
+          },
+          {
+            path: 'children-entities-selector',
+            component: ChildrenEntitiesSelectorComponent,
+            resolve: {
+              data: ChildrenEntitiesSelectorResolver
             }
           }
         ]
@@ -71,7 +111,11 @@ import { ChildrenEntitiesModule } from './children-entities/children-entities.mo
     RootEntitiesModule,
     RelatedEntityModule,
     ChildEntityModule,
-    ChildrenEntitiesModule
+    ChildrenEntitiesModule,
+    RootEntitySelectorModule,
+    RelatedEntitySelectorModule,
+    ChildEntitySelectorModule,
+    ChildrenEntitiesSelectorModule
   ],
   exports: [
     CoreComponent
