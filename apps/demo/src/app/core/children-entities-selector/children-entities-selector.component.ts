@@ -1,7 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ChildrenEntitiesSelectorService } from './children-entities-selector.service';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Album } from '../../data/album/album.interface';
+import { Store } from '@ngrx/store';
+import { AlbumCollection } from '../../data/album/album.collection';
+import { SongCollection } from '../../data/song/song.collection';
+import { childrenEntitiesSelector, relationships, rootEntitySelector } from 'ngrx-entity-relationship';
 
 @Component({
   templateUrl: './children-entities-selector.component.html',
@@ -10,9 +14,21 @@ import { Album } from '../../data/album/album.interface';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChildrenEntitiesSelectorComponent implements OnInit {
-  childrenEntitiesSelector1$: Observable<Album> = this.childrenEntitiesSelectorService.childrenEntitiesSelector1$;
+  example1$: Observable<Album> = this.albumCollection.selectors$.entities$.pipe(
+    map((entities: Array<Album>) => entities[0]),
+    relationships(
+      this.store,
+      rootEntitySelector(this.albumCollection)(
+        childrenEntitiesSelector(this.songCollection, 'albumTitle', 'songs')()
+      )
+    )
+  );
 
-  constructor(private childrenEntitiesSelectorService: ChildrenEntitiesSelectorService) { }
+  constructor(
+    protected readonly store: Store<unknown>,
+    protected readonly albumCollection: AlbumCollection,
+    protected readonly songCollection: SongCollection
+  ) { }
 
   ngOnInit(): void {
   }

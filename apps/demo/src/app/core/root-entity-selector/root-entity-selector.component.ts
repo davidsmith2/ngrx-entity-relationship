@@ -1,7 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { RootEntitySelectorService } from './root-entity-selector.service';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Artist } from '../../data/artist/artist.interface';
+import { Store } from '@ngrx/store';
+import { ArtistCollection } from '../../data/artist/artist.collection';
+import { relationships, rootEntitySelector } from 'ngrx-entity-relationship';
 
 @Component({
   templateUrl: './root-entity-selector.component.html',
@@ -10,9 +13,18 @@ import { Artist } from '../../data/artist/artist.interface';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RootEntitySelectorComponent implements OnInit {
-  rootEntitySelector1$: Observable<Artist> = this.rootEntitySelectorService.rootEntitySelector1$;
+  example1$: Observable<Artist> = this.artistCollection.selectors$.entities$.pipe(
+    map((entities: Array<Artist>) => entities[0]),
+    relationships(
+      this.store,
+      rootEntitySelector(this.artistCollection)()
+    )
+  );
 
-  constructor(private rootEntitySelectorService: RootEntitySelectorService) { }
+  constructor(
+    protected readonly store: Store<unknown>,
+    protected readonly artistCollection: ArtistCollection
+  ) { }
 
   ngOnInit(): void {
   }

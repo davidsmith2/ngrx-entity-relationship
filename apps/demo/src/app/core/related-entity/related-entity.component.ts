@@ -1,7 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { RelatedEntityService } from './related-entity.service';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Artist } from '../../data/artist/artist.interface';
+import { Store } from '@ngrx/store';
+import { ArtistCollection } from '../../data/artist/artist.collection';
+import { AlbumCollection } from '../../data/album/album.collection';
+import { relatedEntity, relationships, rootEntity } from 'ngrx-entity-relationship';
 
 @Component({
   selector: 'ngrx-entity-relationship-root-entity',
@@ -11,9 +15,22 @@ import { Artist } from '../../data/artist/artist.interface';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RelatedEntityComponent implements OnInit {
-  relatedEntity1$: Observable<Artist> = this.relatedEntityService.relatedEntity1$;
+  example1$: Observable<Artist> = this.artistCollection.selectors$.entities$.pipe(
+    map(entities => entities[0]),
+    relationships(
+      this.store,
+      rootEntity(
+        this.artistCollection,
+        relatedEntity(this.albumCollection, 'albumTitle', 'album')
+      )
+    )
+  );
 
-  constructor(private relatedEntityService: RelatedEntityService) { }
+  constructor(
+    protected readonly store: Store<unknown>,
+    protected readonly artistCollection: ArtistCollection,
+    protected readonly albumCollection: AlbumCollection
+  ) { }
 
   ngOnInit(): void { }
 
