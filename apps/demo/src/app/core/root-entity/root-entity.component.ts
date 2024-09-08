@@ -1,10 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Artist } from '../../data/artist/artist.interface';
-import { Store } from '@ngrx/store';
-import { ArtistCollection } from '../../data/artist/artist.collection';
-import { relationships, rootEntity } from 'ngrx-entity-relationship';
+import { RootEntityService } from './root-entity.service';
 
 @Component({
   selector: 'ngrx-entity-relationship-root-entity',
@@ -14,18 +9,8 @@ import { relationships, rootEntity } from 'ngrx-entity-relationship';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RootEntityComponent implements OnInit {
-  example1$: Observable<Artist> = this.artistCollection.selectors$.entities$.pipe(
-    map((entities: Array<Artist>) => entities[0]),
-    relationships(
-      this.store,
-      rootEntity(this.artistCollection)
-    )
-  );
-
   constructor(
-    protected readonly store: Store<unknown>,
-    protected readonly artistCollection: ArtistCollection
-
+    public readonly s: RootEntityService
   ) { }
 
   ngOnInit(): void { }

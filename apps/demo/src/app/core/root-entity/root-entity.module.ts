@@ -1,10 +1,8 @@
 import { NgModule } from "@angular/core";
 import { RootEntityComponent } from "./root-entity.component";
 import { CommonModule } from "@angular/common";
-import { Store } from "@ngrx/store";
-import { ArtistCollection } from "../../data/artist/artist.collection";
-import { reduceGraph, rootEntity } from "ngrx-entity-relationship";
 import { RouterModule } from "@angular/router";
+import { RootEntityService } from "./root-entity.service";
 
 @NgModule({
     declarations: [RootEntityComponent],
@@ -17,24 +15,12 @@ import { RouterModule } from "@angular/router";
         }
       ])
     ],
-    exports: [RootEntityComponent]
+    exports: [RootEntityComponent],
+    providers: [RootEntityService]
 })
 export class RootEntityModule {
-    constructor(
-        private store: Store,
-        private artistCollection: ArtistCollection
-    ) {
-        this.artistCollection.addManyToCache([]);
-        this.store.dispatch(
-          reduceGraph({
-            data: [
-              {
-                name: 'artist1',
-              }
-            ],
-            selector: rootEntity(this.artistCollection),
-          }),
-        );
+    constructor(private rootEntityService: RootEntityService) {
+      this.rootEntityService.hydrateCache();
     }
 
 }
