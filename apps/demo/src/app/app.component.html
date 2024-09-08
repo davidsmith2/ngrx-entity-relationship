@@ -1,6 +1,15 @@
-<h1>ngrx-entity-relationship</h1>
-<router-outlet></router-outlet>
-<!--
-<app-entity></app-entity>
-<app-data></app-data>
--->
+<header>
+  <div style="float: left; width: 50%;">
+    <h1>ngrx-entity-relationship</h1>
+  </div>
+  <div style="float: left; width: 50%; text-align: right;">
+    <ul style="list-style: none; padding-left: 0;">
+      <li style="display: inline; margin-right: 1em; "><a routerLink="/core">Core</a></li>
+      <li style="display: inline; margin-right: 1em; ">GraphQL</li>
+      <li style="display: inline; margin-right: 1em; ">RxJS</li>
+    </ul>
+  </div>
+</header>
+<main style="clear: both;">
+  <router-outlet></router-outlet>
+</main>
