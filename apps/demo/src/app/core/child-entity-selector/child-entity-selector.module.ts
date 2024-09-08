@@ -35,9 +35,6 @@ export class ChildEntitySelectorModule {
               artistName: 'artist1',
             }
           },
-          {
-            name: 'artist2',
-          },
         ],
         selector: rootEntitySelector(this.artistCollection)(
           childEntitySelector(this.albumCollection, 'artistName', 'album')()

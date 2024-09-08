@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { RootEntitiesComponent } from "./root-entities.component";
 import { Store } from "@ngrx/store";
 import { ArtistCollection } from "../../data/artist/artist.collection";
-import { reduceGraph, rootEntity } from "ngrx-entity-relationship";
+import { reduceGraph, rootEntities, rootEntity } from "ngrx-entity-relationship";
 
 @NgModule({
     declarations: [RootEntitiesComponent],
@@ -27,7 +27,7 @@ export class RootEntitiesModule {
                 name: 'artist2',
               },
             ],
-            selector: rootEntity(this.artistCollection),
+            selector: rootEntities(rootEntity(this.artistCollection)),
           }),
         );
     }

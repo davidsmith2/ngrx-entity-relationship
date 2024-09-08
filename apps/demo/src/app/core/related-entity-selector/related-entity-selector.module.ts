@@ -35,9 +35,6 @@ export class RelatedEntitySelectorModule {
               title: 'album1',
             }
           },
-          {
-            name: 'artist2',
-          },
         ],
         selector: rootEntitySelector(this.artistCollection)(
           relatedEntitySelector(this.albumCollection, 'albumTitle', 'album')()
