@@ -5,10 +5,19 @@ import { Store } from "@ngrx/store";
 import { ArtistCollection } from "../../data/artist/artist.collection";
 import { AlbumCollection } from "../../data/album/album.collection";
 import { reduceGraph, relatedEntity, rootEntity } from "ngrx-entity-relationship";
+import { RouterModule } from "@angular/router";
 
 @NgModule({
     declarations: [RelatedEntityComponent],
-    imports: [CommonModule],
+    imports: [
+      CommonModule,
+      RouterModule.forChild([
+        {
+          path: '',
+          component: RelatedEntityComponent
+        }
+      ])
+    ],
     exports: [RelatedEntityComponent]
 })
 export class RelatedEntityModule {

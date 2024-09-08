@@ -4,13 +4,20 @@ import { RootEntitySelectorComponent } from './root-entity-selector.component';
 import { Store } from '@ngrx/store';
 import { ArtistCollection } from '../../data/artist/artist.collection';
 import { reduceGraph, rootEntitySelector } from 'ngrx-entity-relationship';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     RootEntitySelectorComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: RootEntitySelectorComponent
+      }
+    ])
   ],
   exports: [
     RootEntitySelectorComponent

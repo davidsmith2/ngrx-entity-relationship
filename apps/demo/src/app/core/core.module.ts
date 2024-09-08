@@ -2,24 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoreComponent } from './core.component';
 import { RouterModule } from '@angular/router';
-import { RootEntityComponent } from './root-entity/root-entity.component';
-import { RootEntitiesComponent } from './root-entities/root-entities.component';
-import { RelatedEntityComponent } from './related-entity/related-entity.component';
-import { RootEntityModule } from './root-entity/root-entity.module';
-import { RootEntitiesModule } from './root-entities/root-entities.module';
-import { RelatedEntityModule } from './related-entity/related-entity.module';
-import { ChildEntityComponent } from './child-entity/child-entity.component';
-import { ChildrenEntitiesComponent } from './children-entities/children-entities.component';
-import { ChildEntityModule } from './child-entity/child-entity.module';
-import { ChildrenEntitiesModule } from './children-entities/children-entities.module';
-import { RootEntitySelectorModule } from './root-entity-selector/root-entity-selector.module';
-import { RootEntitySelectorComponent } from './root-entity-selector/root-entity-selector.component';
-import { RelatedEntitySelectorComponent } from './related-entity-selector/related-entity-selector.component';
-import { RelatedEntitySelectorModule } from './related-entity-selector/related-entity-selector.module';
-import { ChildEntitySelectorComponent } from './child-entity-selector/child-entity-selector.component';
-import { ChildEntitySelectorModule } from './child-entity-selector/child-entity-selector.module';
-import { ChildrenEntitiesSelectorComponent } from './children-entities-selector/children-entities-selector.component';
-import { ChildrenEntitiesSelectorModule } from './children-entities-selector/children-entities-selector.module';
 
 @NgModule({
   declarations: [
@@ -34,52 +16,43 @@ import { ChildrenEntitiesSelectorModule } from './children-entities-selector/chi
         children: [
           {
             path: 'root-entity',
-            component: RootEntityComponent
+            loadChildren: () => import('./root-entity/root-entity.module').then(m => m.RootEntityModule)
           },
           {
             path: 'root-entity-selector',
-            component: RootEntitySelectorComponent
+            loadChildren: () => import('./root-entity-selector/root-entity-selector.module').then(m => m.RootEntitySelectorModule)
           },
           {
             path: 'root-entities',
-            component: RootEntitiesComponent
+            loadChildren: () => import('./root-entities/root-entities.module').then(m => m.RootEntitiesModule)
           },
           {
             path: 'related-entity',
-            component: RelatedEntityComponent
+            loadChildren: () => import('./related-entity/related-entity.module').then(m => m.RelatedEntityModule)
           },
           {
             path: 'related-entity-selector',
-            component: RelatedEntitySelectorComponent
+            loadChildren: () => import('./related-entity-selector/related-entity-selector.module').then(m => m.RelatedEntitySelectorModule)
           },
           {
             path: 'child-entity',
-            component: ChildEntityComponent
+            loadChildren: () => import('./child-entity/child-entity.module').then(m => m.ChildEntityModule)
           },
           {
             path: 'child-entity-selector',
-            component: ChildEntitySelectorComponent
+            loadChildren: () => import('./child-entity-selector/child-entity-selector.module').then(m => m.ChildEntitySelectorModule)
           },
           {
             path: 'children-entities',
-            component: ChildrenEntitiesComponent
+            loadChildren: () => import('./children-entities/children-entities.module').then(m => m.ChildrenEntitiesModule)
           },
           {
             path: 'children-entities-selector',
-            component: ChildrenEntitiesSelectorComponent
+            loadChildren: () => import('./children-entities-selector/children-entities-selector.module').then(m => m.ChildrenEntitiesSelectorModule)
           }
         ]
       }
-    ]),
-    RootEntityModule,
-    RootEntitiesModule,
-    RelatedEntityModule,
-    ChildEntityModule,
-    ChildrenEntitiesModule,
-    RootEntitySelectorModule,
-    RelatedEntitySelectorModule,
-    ChildEntitySelectorModule,
-    ChildrenEntitiesSelectorModule
+    ])
   ],
   exports: [
     CoreComponent

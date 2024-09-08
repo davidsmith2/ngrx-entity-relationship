@@ -4,10 +4,19 @@ import { RootEntitiesComponent } from "./root-entities.component";
 import { Store } from "@ngrx/store";
 import { ArtistCollection } from "../../data/artist/artist.collection";
 import { reduceGraph, rootEntities, rootEntity } from "ngrx-entity-relationship";
+import { RouterModule } from "@angular/router";
 
 @NgModule({
     declarations: [RootEntitiesComponent],
-    imports: [CommonModule],
+    imports: [
+      CommonModule,
+      RouterModule.forChild([
+        {
+          path: '',
+          component: RootEntitiesComponent
+        }
+      ])
+    ],
     exports: [RootEntitiesComponent]
 })
 export class RootEntitiesModule {

@@ -4,10 +4,19 @@ import { CommonModule } from "@angular/common";
 import { Store } from "@ngrx/store";
 import { ArtistCollection } from "../../data/artist/artist.collection";
 import { reduceGraph, rootEntity } from "ngrx-entity-relationship";
+import { RouterModule } from "@angular/router";
 
 @NgModule({
     declarations: [RootEntityComponent],
-    imports: [CommonModule],
+    imports: [
+      CommonModule,
+      RouterModule.forChild([
+        {
+          path: '',
+          component: RootEntityComponent
+        }
+      ])
+    ],
     exports: [RootEntityComponent]
 })
 export class RootEntityModule {
