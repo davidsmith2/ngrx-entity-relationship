@@ -1,4 +1,5 @@
 import {rootEntityFlags} from './rootEntityFlags';
+import { RootSelectorFactoryConfig, RootSelectorFactory } from './rootSelectorFactory';
 import {
     CACHE,
     CACHE_CHECKS_SET,
@@ -6,8 +7,6 @@ import {
     HANDLER_RELATED_ENTITY,
     HANDLER_ROOT_ENTITY,
     ID_TYPES,
-    isBuiltInSelector,
-    isSelectorMeta,
     STORE_SELECTOR,
     TRANSFORMER,
     UNKNOWN,
@@ -43,23 +42,13 @@ export function rootEntity<STORE, ENTITY, TRANSFORMED>(
     guess1?: TRANSFORMER<ENTITY, TRANSFORMED> | SELECTOR_META | HANDLER_RELATED_ENTITY<STORE, ENTITY>,
     guess2?: SELECTOR_META | HANDLER_RELATED_ENTITY<STORE, ENTITY>,
 ): HANDLER_ROOT_ENTITY<STORE, ENTITY, ENTITY | TRANSFORMED, ID_TYPES> {
-    let relationships: Array<HANDLER_RELATED_ENTITY<STORE, ENTITY>> = argsToArray(arguments);
-    relationships = relationships.slice(1);
 
-    let transformer: undefined | TRANSFORMER<ENTITY, TRANSFORMED>;
-    let meta: SELECTOR_META = {};
-    if (!isBuiltInSelector<STORE, ENTITY>(guess1) && !isSelectorMeta(guess1)) {
-        transformer = guess1;
-        relationships = relationships.slice(1);
-    }
-    if (!isBuiltInSelector<STORE, ENTITY>(guess1) && isSelectorMeta(guess1)) {
-        meta = guess1;
-        relationships = relationships.slice(1);
-    }
-    if (!isBuiltInSelector<STORE, ENTITY>(guess2) && isSelectorMeta(guess2)) {
-        meta = guess2;
-        relationships = relationships.slice(1);
-    }
+
+
+    const rootSelectorFactory: RootSelectorFactory<STORE, ENTITY, ENTITY | TRANSFORMED> = new RootSelectorFactory<STORE, ENTITY, ENTITY | TRANSFORMED>();
+    const rootSelectorConfig: RootSelectorFactoryConfig<STORE, ENTITY, ENTITY | TRANSFORMED> = rootSelectorFactory.argsToConfig(argsToArray(arguments), guess1, guess2);
+
+
 
     const {collection: collectionSelector, id: idSelector} = normalizeSelector(featureSelector);
 
@@ -112,7 +101,7 @@ export function rootEntity<STORE, ENTITY, TRANSFORMED>(
         value = {...featureState.entities[id]} as ENTITY;
 
         let cacheRelLevelIndex = 0;
-        for (const relationship of relationships) {
+        for (const relationship of rootSelectorConfig.relationships) {
             const cacheRelLevel = `${cacheLevel}:${cacheRelLevelIndex}`;
             const cacheRelHash = relationship(cacheRelLevel, state, cache, value, idSelector);
             cacheRelLevelIndex += 1;
@@ -121,18 +110,18 @@ export function rootEntity<STORE, ENTITY, TRANSFORMED>(
             }
         }
 
-        value = transformer ? transformer(value) : value;
+        value = rootSelectorConfig.transformer ? rootSelectorConfig.transformer(value) : value;
         cacheDataLevel.set(cacheHash, [checks, value]);
         return value;
     };
     callback.ngrxEntityRelationship = 'rootEntity';
     callback.collectionSelector = collectionSelector;
-    callback.meta = meta;
+    callback.meta = rootSelectorConfig.meta;
     callback.idSelector = idSelector;
-    callback.relationships = relationships;
+    callback.relationships = rootSelectorConfig.relationships;
     callback.release = () => {
         cache.clear();
-        for (const relationship of relationships) {
+        for (const relationship of rootSelectorConfig.relationships) {
             relationship.release();
         }
     };

@@ -1,3 +1,4 @@
+import { RelationshipSelectorFactory, RelationshipSelectorFactoryConfig } from './relationshipSelectorFactory';
 import {
     CACHE,
     CACHE_CHECKS_SET,
@@ -6,7 +7,6 @@ import {
     ID_FILTER_PROPS,
     ID_SELECTOR,
     ID_TYPES,
-    isSelectorMeta,
     UNKNOWN,
     VALUES_FILTER_PROPS,
 } from './types';
@@ -40,14 +40,14 @@ export function childrenEntities<
     keyId: RELATED_KEY_IDS,
     keyValue: RELATED_KEY_VALUES_ARRAYS,
 ): HANDLER_RELATED_ENTITY<STORE, PARENT_ENTITY> {
-    let relationships: Array<HANDLER_RELATED_ENTITY<STORE, RELATED_ENTITY>> = argsToArray(arguments);
-    relationships = relationships.slice(3);
 
-    let meta: SELECTOR_META = {};
-    if (isSelectorMeta(relationships[0])) {
-        meta = relationships[0];
-        relationships = relationships.slice(1);
-    }
+
+
+    const relationshipSelectorFactory: RelationshipSelectorFactory<STORE, PARENT_ENTITY> = new RelationshipSelectorFactory();
+    const relationshipSelectorFactoryConfig: RelationshipSelectorFactoryConfig<STORE, PARENT_ENTITY> = relationshipSelectorFactory.argsToConfig(argsToArray(arguments));
+
+
+
 
     const {collection: collectionSelector, id: idSelector} = normalizeSelector(featureSelector);
     const emptyResult: Map<UNKNOWN, UNKNOWN> = new Map();
@@ -144,7 +144,7 @@ export function childrenEntities<
             entityChecksEntities.set(id, featureState.entities[id]);
 
             let cacheRelLevelIndex = 0;
-            for (const relationship of relationships) {
+            for (const relationship of relationshipSelectorFactoryConfig.relationships) {
                 const cacheRelLevel = `${cacheLevel}:${cacheRelLevelIndex}`;
                 const cacheRelHash = relationship(cacheRelLevel, state, cache, entityValue, idSelector);
                 cacheRelLevelIndex += 1;
@@ -162,14 +162,14 @@ export function childrenEntities<
     };
     callback.ngrxEntityRelationship = 'childrenEntities';
     callback.collectionSelector = collectionSelector;
-    callback.meta = meta;
+    callback.meta = relationshipSelectorFactoryConfig.meta;
     callback.idSelector = idSelector;
-    callback.relationships = relationships;
+    callback.relationships = relationshipSelectorFactoryConfig.relationships;
     callback.keyId = keyId;
     callback.keyValue = keyValue;
     callback.release = () => {
         emptyResult.clear();
-        for (const relationship of relationships) {
+        for (const relationship of relationshipSelectorFactoryConfig.relationships) {
             relationship.release();
         }
     };
