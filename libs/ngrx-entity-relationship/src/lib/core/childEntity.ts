@@ -1,4 +1,3 @@
-import { RelationshipSelectorFactory, RelationshipSelectorFactoryConfig } from './relationshipSelectorFactory';
 import {
     CACHE,
     CACHE_CHECKS_SET,
@@ -7,10 +6,11 @@ import {
     ID_FILTER_PROPS,
     ID_SELECTOR,
     ID_TYPES,
+    RELATIONSHIP_SELECTOR_FACTORY_CONFIG,
     UNKNOWN,
     VALUES_FILTER_PROPS,
 } from './types';
-import {argsToArray, mergeCache, normalizeSelector, objectValues, verifyCache} from './utils';
+import {argsToArray, mergeCache, normalizeSelector, objectValues, relationshipSelectorFactoryArgsToConfig, verifyCache} from './utils';
 
 export function childEntity<
     STORE,
@@ -41,12 +41,7 @@ export function childEntity<
     keyValue: RELATED_KEY_VALUES,
 ): HANDLER_RELATED_ENTITY<STORE, PARENT_ENTITY> {
 
-
-
-    const relationshipSelectorFactory: RelationshipSelectorFactory<STORE, PARENT_ENTITY> = new RelationshipSelectorFactory();
-    const relationshipSelectorFactoryConfig: RelationshipSelectorFactoryConfig<STORE, PARENT_ENTITY> = relationshipSelectorFactory.argsToConfig(argsToArray(arguments));
-
-
+    const relationshipSelectorFactoryConfig: RELATIONSHIP_SELECTOR_FACTORY_CONFIG<STORE, PARENT_ENTITY> = relationshipSelectorFactoryArgsToConfig(argsToArray(arguments));
 
     const {collection: collectionSelector, id: idSelector} = normalizeSelector(featureSelector);
 

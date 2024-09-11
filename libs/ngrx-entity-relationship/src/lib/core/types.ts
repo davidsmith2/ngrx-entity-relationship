@@ -118,3 +118,15 @@ export function isBuiltInSelector<S, E>(value: UNKNOWN): value is HANDLER_RELATE
 export function isSelectorMeta(value: UNKNOWN): value is SELECTOR_META {
     return typeof value === 'object' && value !== null;
 }
+
+export interface ROOT_SELECTOR_FACTORY_CONFIG<STORE, ENTITY, TRANSFORMED> {
+    relationships: Array<HANDLER_RELATED_ENTITY<STORE, ENTITY>>;
+    meta: SELECTOR_META;
+    transformer?: undefined | TRANSFORMER<ENTITY, TRANSFORMED>;
+  }
+  
+export interface RELATIONSHIP_SELECTOR_FACTORY_CONFIG<STORE, ENTITY> {
+    relationships: Array<HANDLER_RELATED_ENTITY<STORE, ENTITY>>;
+    meta: SELECTOR_META;
+}
+  

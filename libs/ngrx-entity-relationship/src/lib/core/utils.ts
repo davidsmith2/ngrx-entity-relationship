@@ -3,9 +3,15 @@ import {
     CACHE_CHECKS_SET,
     ENTITY_STATE,
     FEATURE_SELECTOR,
+    HANDLER_RELATED_ENTITY,
     ID_SELECTOR,
     ID_TYPES,
+    isBuiltInSelector,
+    isSelectorMeta,
+    RELATIONSHIP_SELECTOR_FACTORY_CONFIG,
+    ROOT_SELECTOR_FACTORY_CONFIG,
     STORE_SELECTOR,
+    TRANSFORMER,
     UNKNOWN,
 } from './types';
 
@@ -143,3 +149,45 @@ export const mapValues = <T>(set: {forEach(a1: (value: T) => void): void}): Arra
 
     return result;
 };
+
+export function rootSelectorFactoryArgsToConfig<STORE, ENTITY, TRANSFORMED>(
+    args: Array<HANDLER_RELATED_ENTITY<STORE, ENTITY>>,
+    guess1?: TRANSFORMER<ENTITY, TRANSFORMED> | SELECTOR_META | HANDLER_RELATED_ENTITY<STORE, ENTITY>,
+    guess2?: SELECTOR_META | HANDLER_RELATED_ENTITY<STORE, ENTITY>
+): ROOT_SELECTOR_FACTORY_CONFIG<STORE, ENTITY, TRANSFORMED> {
+    let relationships = args.slice(1);
+    let transformer: undefined | TRANSFORMER<ENTITY, TRANSFORMED>;
+    let meta: SELECTOR_META = {};
+        if (!isBuiltInSelector<STORE, ENTITY>(guess1) && !isSelectorMeta(guess1)) {
+        transformer = guess1;
+        relationships = relationships.slice(1);
+    }
+    if (!isBuiltInSelector<STORE, ENTITY>(guess1) && isSelectorMeta(guess1)) {
+        meta = guess1;
+        relationships = relationships.slice(1);
+    }
+    if (!isBuiltInSelector<STORE, ENTITY>(guess2) && isSelectorMeta(guess2)) {
+        meta = guess2;
+        relationships = relationships.slice(1);
+    }
+    return {
+      relationships,
+      transformer,
+      meta
+    };
+}
+
+export function relationshipSelectorFactoryArgsToConfig<STORE, ENTITY>(
+    args: Array<HANDLER_RELATED_ENTITY<STORE, ENTITY>>
+): RELATIONSHIP_SELECTOR_FACTORY_CONFIG<STORE, ENTITY> {
+    let relationships = args.slice(3);
+    let meta: SELECTOR_META = {};
+    if (isSelectorMeta(relationships[0])) {
+        meta = relationships[0];
+        relationships = relationships.slice(1);
+    }
+    return {
+      relationships,
+      meta
+    };
+}

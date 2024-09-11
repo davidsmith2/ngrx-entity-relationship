@@ -1,4 +1,3 @@
-import { RelationshipSelectorFactory, RelationshipSelectorFactoryConfig } from './relationshipSelectorFactory';
 import {
     CACHE,
     CACHE_CHECKS_SET,
@@ -6,10 +5,11 @@ import {
     HANDLER_RELATED_ENTITY,
     ID_FILTER_PROPS,
     ID_TYPES,
+    RELATIONSHIP_SELECTOR_FACTORY_CONFIG,
     UNKNOWN,
     VALUES_FILTER_PROPS,
 } from './types';
-import {argsToArray, mergeCache, normalizeSelector, verifyCache} from './utils';
+import {argsToArray, mergeCache, normalizeSelector, relationshipSelectorFactoryArgsToConfig, verifyCache} from './utils';
 
 export function relatedEntity<
     STORE,
@@ -50,11 +50,7 @@ export function relatedEntity<
     keyValue: RELATED_KEY_VALUES | RELATED_KEY_VALUES_ARRAYS,
 ): HANDLER_RELATED_ENTITY<STORE, PARENT_ENTITY> {
 
-
-
-    const relationshipSelectorFactory: RelationshipSelectorFactory<STORE, PARENT_ENTITY> = new RelationshipSelectorFactory();
-    const relationshipSelectorFactoryConfig: RelationshipSelectorFactoryConfig<STORE, PARENT_ENTITY> = relationshipSelectorFactory.argsToConfig(argsToArray(arguments));
-
+    const relationshipSelectorFactoryConfig: RELATIONSHIP_SELECTOR_FACTORY_CONFIG<STORE, PARENT_ENTITY> = relationshipSelectorFactoryArgsToConfig(argsToArray(arguments));
 
     const {collection: collectionSelector, id: idSelector} = normalizeSelector(featureSelector);
     const emptyResult: Map<UNKNOWN, UNKNOWN> = new Map();

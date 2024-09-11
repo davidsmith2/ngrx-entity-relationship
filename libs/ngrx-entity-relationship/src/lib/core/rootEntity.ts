@@ -1,5 +1,4 @@
 import {rootEntityFlags} from './rootEntityFlags';
-import { RootSelectorFactoryConfig, RootSelectorFactory } from './rootSelectorFactory';
 import {
     CACHE,
     CACHE_CHECKS_SET,
@@ -7,11 +6,12 @@ import {
     HANDLER_RELATED_ENTITY,
     HANDLER_ROOT_ENTITY,
     ID_TYPES,
+    ROOT_SELECTOR_FACTORY_CONFIG,
     STORE_SELECTOR,
     TRANSFORMER,
     UNKNOWN,
 } from './types';
-import {argsToArray, mergeCache, normalizeSelector, verifyCache} from './utils';
+import {argsToArray, mergeCache, normalizeSelector, rootSelectorFactoryArgsToConfig, verifyCache} from './utils';
 
 export function rootEntity<STORE, ENTITY>(
     featureSelector: FEATURE_SELECTOR<STORE, ENTITY>,
@@ -43,12 +43,7 @@ export function rootEntity<STORE, ENTITY, TRANSFORMED>(
     guess2?: SELECTOR_META | HANDLER_RELATED_ENTITY<STORE, ENTITY>,
 ): HANDLER_ROOT_ENTITY<STORE, ENTITY, ENTITY | TRANSFORMED, ID_TYPES> {
 
-
-
-    const rootSelectorFactory: RootSelectorFactory<STORE, ENTITY, ENTITY | TRANSFORMED> = new RootSelectorFactory<STORE, ENTITY, ENTITY | TRANSFORMED>();
-    const rootSelectorConfig: RootSelectorFactoryConfig<STORE, ENTITY, ENTITY | TRANSFORMED> = rootSelectorFactory.argsToConfig(argsToArray(arguments), guess1, guess2);
-
-
+    const rootSelectorFactoryConfig: ROOT_SELECTOR_FACTORY_CONFIG<STORE, ENTITY, TRANSFORMED> = rootSelectorFactoryArgsToConfig(argsToArray(arguments), guess1, guess2);
 
     const {collection: collectionSelector, id: idSelector} = normalizeSelector(featureSelector);
 
@@ -101,7 +96,7 @@ export function rootEntity<STORE, ENTITY, TRANSFORMED>(
         value = {...featureState.entities[id]} as ENTITY;
 
         let cacheRelLevelIndex = 0;
-        for (const relationship of rootSelectorConfig.relationships) {
+        for (const relationship of rootSelectorFactoryConfig.relationships) {
             const cacheRelLevel = `${cacheLevel}:${cacheRelLevelIndex}`;
             const cacheRelHash = relationship(cacheRelLevel, state, cache, value, idSelector);
             cacheRelLevelIndex += 1;
@@ -110,18 +105,18 @@ export function rootEntity<STORE, ENTITY, TRANSFORMED>(
             }
         }
 
-        value = rootSelectorConfig.transformer ? rootSelectorConfig.transformer(value) : value;
+        value = rootSelectorFactoryConfig.transformer ? rootSelectorFactoryConfig.transformer(value) : value;
         cacheDataLevel.set(cacheHash, [checks, value]);
         return value;
     };
     callback.ngrxEntityRelationship = 'rootEntity';
     callback.collectionSelector = collectionSelector;
-    callback.meta = rootSelectorConfig.meta;
+    callback.meta = rootSelectorFactoryConfig.meta;
     callback.idSelector = idSelector;
-    callback.relationships = rootSelectorConfig.relationships;
+    callback.relationships = rootSelectorFactoryConfig.relationships;
     callback.release = () => {
         cache.clear();
-        for (const relationship of rootSelectorConfig.relationships) {
+        for (const relationship of rootSelectorFactoryConfig.relationships) {
             relationship.release();
         }
     };
