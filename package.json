@@ -140,6 +140,7 @@
     "@ngrx/effects": "^12.5.1",
     "@ngrx/entity": "^12.5.1",
     "@ngrx/store": "^12.5.1",
+    "@ngrx/store-devtools": "^12.5.1",
     "@nrwl/angular": "12.10.1",
     "@nrwl/cli": "12.10.1",
     "@nrwl/tao": "12.10.1",
