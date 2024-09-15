@@ -15,6 +15,11 @@ import { RouterModule } from '@angular/router';
         component: CoreComponent,
         children: [
           {
+            path: '',
+            redirectTo: 'root-entity',
+            pathMatch: 'full'
+          },
+          {
             path: 'root-entity',
             loadChildren: () => import('./root-entity/root-entity.module').then(m => m.RootEntityModule)
           },
@@ -49,6 +54,14 @@ import { RouterModule } from '@angular/router';
           {
             path: 'children-entities-selector',
             loadChildren: () => import('./children-entities-selector/children-entities-selector.module').then(m => m.ChildrenEntitiesSelectorModule)
+          },
+          {
+            path: 'from-flat',
+            loadChildren: () => import('./from-flat/from-flat.module').then(m => m.FromFlatModule)
+          },
+          {
+            path: 'from-graph',
+            loadChildren: () => import('./from-graph/from-graph.module').then(m => m.FromGraphModule)
           }
         ]
       }

@@ -26,9 +26,19 @@ import { environment } from '../environments/environment';
         DataModule,
         RouterModule.forRoot([
             {
+                path: '',
+                redirectTo: 'core',
+                pathMatch: 'full'
+            },
+            {
                 path: 'core',
                 loadChildren: () => import('./core/core.module').then(m => m.CoreModule),
+            },
+            {
+                path: 'rxjs',
+                loadChildren: () => import('./rxjs/rxjs.module').then(m => m.RxjsModule),
             }
+
         ])
     ],
     bootstrap: [AppComponent]
